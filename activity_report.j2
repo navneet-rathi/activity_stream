@@ -49,6 +49,7 @@
                 <th>initiated By</th>
                 <th>Action<th>
                 <th>Summary</th>
+                <th>Details</th>
                 
             </tr>
         </thead>
@@ -59,8 +60,9 @@
                 <td> {{ job.summary_fields.actor.username
                       if job.summary_fields.actor is defined and job.summary_fields.actor.username is defined
                       else (job.action.username if job.action is defined and job.action.username is defined else 'System') }}</td>
-                <td> {{ job.operation }} {{ job.object1 }} {{ job['summary_fields'][job['object1']][0]['name'] }}</td> 
-                <td> {{ job }}</td>
+                <td> {{ job.operation }} {{ job.object1 }} </td> 
+                <td> {{ job.summary_fields }}</td>
+                <th> {{job}} </th>
           </tr>
         {% endfor %}
         </tbody>
