@@ -9,6 +9,13 @@
     output_file: "activity_stream.json"
 
   tasks:
+    - name: Ensure host entry is present
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: "192.168.1.10    awx.example.org"
+        state: present
+        create: yes
+
     - name: Get activity stream logs
       uri:
         url: "{{ tower_host }}/api/v2/activity_stream/?page_size=1000"
