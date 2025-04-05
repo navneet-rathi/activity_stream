@@ -1,7 +1,7 @@
 ---
 - name: Export AWX Activity Stream Logs
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   vars:
     tower_host: "https://awx.example.com"
     tower_username: "admin"
