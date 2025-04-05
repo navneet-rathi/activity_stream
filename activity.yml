@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    tower_host: "https://awx.example.org"
+    tower_host: "https://awx.example.com"
     tower_username: "admin"
     tower_password: "admin123"
     output_file: "activity_stream.json"
