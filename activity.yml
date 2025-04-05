@@ -42,7 +42,7 @@
         dest: /tmp/activity_report.html
 
     - name: Email Alert if fail server is unreachable
-      when: ping_result.unreachable is defined
+#      when: ping_result.unreachable is defined
       mail:
         host: smtp.gmail.com
         port: 587
