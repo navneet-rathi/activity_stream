@@ -1,0 +1,25 @@
+
+- name: Get paginated Activity Stream events
+  uri:
+    url: "{{ awx_host }}/api/v2/activity_stream/?page={{ page }}"
+    method: GET
+    user: "{{ awx_user }}"
+    password: "{{ awx_password }}"
+    force_basic_auth: true
+    validate_certs: false
+    return_content: true
+    status_code: 200
+  register: response
+  until: response.json.next is not defined or response.json.next == None
+  retries: 100
+  delay: 1
+  loop: "{{ range(1, 100) | list }}"
+  loop_control:
+    loop_var: page
+  vars:
+    page: "{{ page }}"
+  delegate_to: localhost
+
+- name: Combine results from all pages
+  set_fact:
+    all_events: "{{ all_events + response.json.results }}"
