@@ -1,9 +1,1 @@
-           <tr>
-                <td>{{ job.time }}</td>
-                <td>{{ job.initiated_by }}</td>
-                <td>{{ job.name }}</td>
-                <td>{{ job.inventory }}</td>
-                <td>{{ job.project }}</td>
-                <td>{{ job.playbook }}</td>
-                <td>{{ job.execution_environment }}</td>
-            </tr>
+---
