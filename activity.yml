@@ -18,7 +18,7 @@
         create: yes
 
     - name: Get activity stream logs
-      uri:
+      ansible.builtin.uri:
         url: "{{ tower_host }}/api/v2/activity_stream/?page_size=1000"
         method: GET
         user: "{{ tower_username }}"
@@ -28,13 +28,16 @@
         return_content: yes
       register: activity_stream
 
+    - name: Added debug for testing
+      ansible.builtin.debug:
+        msg: "{{ activity_stream }}"
 #    - name: Save activity stream logs to file
 #      copy:
 #        content: "{{ activity_stream.content }}"
 #        dest: "{{ output_file }}"
 
     - name: Generate HTML Activity Report using Jinja2
-      template:
+      ansible.builtin.template:
         src: activity_report.j2
         dest: /tmp/activity_report.html
 
