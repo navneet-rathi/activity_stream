@@ -28,9 +28,9 @@
         return_content: yes
       register: activity_stream
 
-    - name: Added debug for testing
-      ansible.builtin.debug:
-        msg: "{{ activity_stream }}"
+   # - name: Added debug for testing
+   #   ansible.builtin.debug:
+   #     msg: "{{ activity_stream }}"
 #    - name: Save activity stream logs to file
 #      copy:
 #        content: "{{ activity_stream.content }}"
