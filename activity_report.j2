@@ -59,7 +59,7 @@
                 <td> {{ job.summary_fields.actor.username
                       if job.summary_fields.actor is defined and job.summary_fields.actor.username is defined
                       else (job.action.username if job.action is defined and job.action.username is defined else 'System') }}</td>
-                <td> {{ job.operation }} {{ job.object1 }} {{ job['summary_fields'][job['object1']['name'] }}</td> 
+                <td> {{ job.operation }} {{ job.object1 }} {{ job['summary_fields'][job['object1']]['name'] }}</td> 
                 <td> {{ job }}</td>
           </tr>
         {% endfor %}
