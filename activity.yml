@@ -14,6 +14,7 @@
         path: /etc/hosts
         line: "192.168.1.10    awx.example.org"
         state: present
+        unsafe_writes: true
         create: yes
 
     - name: Get activity stream logs
