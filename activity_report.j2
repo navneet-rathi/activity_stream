@@ -55,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for job in activity_stream.json %}
+        {% for job in activity_stream.json.results %}
             <tr>
                 <td>{{ job.time }}</td>
                 <td>{{ job.initiated_by }}</td>
