@@ -45,26 +45,15 @@
   <table>
            <thead>
             <tr>
-                <th>Time</th>
-                <th>Initiated By</th>
-                <th>Job Name</th>
-                <th>Inventory</th>
-                <th>Project</th>
-                <th>Playbook</th>
-                <th>Execution Environment</th>
+                <th>Sammple</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for job in activity_stream.json.results %}
-            <tr>
-                <td>{{ job.time }}</td>
-                <td>{{ job.initiated_by }}</td>
-                <td>{{ job.name }}</td>
-                <td>{{ job.inventory }}</td>
-                <td>{{ job.project }}</td>
-                <td>{{ job.playbook }}</td>
-                <td>{{ job.execution_environment }}</td>
-            </tr>
+          <tr>
+                <td> {{ job }}</td>
+          </tr>
         {% endfor %}
         </tbody>
   </table>
