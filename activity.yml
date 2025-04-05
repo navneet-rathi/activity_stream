@@ -1,0 +1,26 @@
+---
+- name: Export AWX Activity Stream Logs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    tower_host: "https://your-awx-url"
+    tower_username: "admin"
+    tower_password: "your-password"
+    output_file: "activity_stream.json"
+
+  tasks:
+    - name: Get activity stream logs
+      uri:
+        url: "{{ tower_host }}/api/v2/activity_stream/?page_size=1000"
+        method: GET
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+        force_basic_auth: yes
+        validate_certs: false
+        return_content: yes
+      register: activity_stream
+
+    - name: Save activity stream logs to file
+      copy:
+        content: "{{ activity_stream.content }}"
+        dest: "{{ output_file }}"
