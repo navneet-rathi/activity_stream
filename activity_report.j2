@@ -54,7 +54,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for entry in activity_stream.results %}
+      {% for entry in activity_stream.json.results %}
       <tr>
         <td>{{ entry.id }}</td>
         <td>{{ entry.actor }}</td>
