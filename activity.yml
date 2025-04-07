@@ -19,7 +19,7 @@
 
     - name: Get activity stream logs
       ansible.builtin.uri:
-        url: "{{ tower_host }}/api/v2/activity_stream/?page_size=1000"
+        url: "{{ tower_host }}/api/controller//v2/activity_stream/?page_size=1000"
         method: GET
         user: "{{ tower_username }}"
         password: "{{ tower_password }}"
