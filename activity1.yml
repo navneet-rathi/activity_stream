@@ -24,7 +24,7 @@
         var: job_api.summary_fields.created_by.username
 
     - set_fact:
-        wflow_api: "{{ lookup('ansible.controller.controller_api', 'jobs/workflow/{{ job_api.summary_fields.source_workflow_job.id }}', host='aap.example.org',
+        wflow_api: "{{ lookup('ansible.controller.controller_api', 'workflow_jobs/{{ job_api.summary_fields.source_workflow_job.id }}', host='aap.example.org',
                                   username='admin', password='primod123', verify_ssl=False) }}"
 
     - debug:
