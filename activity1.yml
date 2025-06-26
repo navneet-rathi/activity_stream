@@ -2,6 +2,10 @@
   hosts: localhost
   gather_facts: false
   tasks:
+    - debug:
+        var: ansible_env
+      delegate_to: localhost
+        
     - set_fact:
         job_id: "{{ lookup('env', 'awx_workflow_job_id') | int }}"
   
