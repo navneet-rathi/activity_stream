@@ -7,7 +7,7 @@
       delegate_to: localhost
         
     - set_fact:
-        job_id: "{{ lookup('env', 'awx_workflow_job_id') | int }}"
+        job_id: "{{ lookup('env', 'JOB_ID') | int }}"
   
     - name: Show the workflow job ID
       debug:
