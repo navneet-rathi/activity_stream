@@ -3,7 +3,7 @@
   gather_facts: false
   tasks:
     - set_fact:
-        job_id: "{{ lookup('env', 'tower_workflow_job_id') | int }}"
+        job_id: "{{ lookup('env', 'awx_workflow_job_id') | int }}"
   
     - name: Show the workflow job ID
       debug:
