@@ -1,0 +1,7 @@
+- name: Get current workflow job ID
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Show the workflow job ID
+      debug:
+        msg: "Current Workflow Job ID is {{ workflow_job_id }}"
