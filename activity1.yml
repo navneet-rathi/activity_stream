@@ -12,3 +12,6 @@
     - name: Show the workflow job ID
       debug:
         msg: "Current Workflow Job ID is {{ job_id }}"
+
+    - name: making a call
+      
