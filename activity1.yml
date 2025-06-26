@@ -18,5 +18,15 @@
                                   username='admin', password='primod123', verify_ssl=False) }}"
         
     - debug:
-        var: job_api
+        var: job_api.summary_fields.source_workflow_job.id
+        
+    - debug:
+        var: job_api.summary_fields.created_by.username
+
+    - set_fact:
+        wflow_api: "{{ lookup('ansible.controller.controller_api', 'jobs/{{ job_api.summary_fields.source_workflow_job.id }}', host='aap.example.org',
+                                  username='admin', password='primod123', verify_ssl=False) }}"
+
+    - debug:
+        var: wflow_api
       
