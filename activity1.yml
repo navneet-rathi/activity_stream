@@ -1,6 +1,6 @@
 - name: Get current workflow job ID
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   tasks:
     - debug:
         var: ansible_env
