@@ -31,7 +31,7 @@
         jobs: "{{ job_api_response.json.results }}"
         report_title: "Monthly Automation Summary"
         report_range: "Last 30 Days (Since {{ last_month }})"
-
+        stdout: "{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
   #   - name: copy report to aux_server
   #     ansible.builtin.copy:
   #       src: "./job_report_{{ ansible_date_time.date }}.html"

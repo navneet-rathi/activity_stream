@@ -40,10 +40,7 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
-                <td>
-                    <a href="{{ controller_url }}{{ job.related.stdout }}" target="_blank" style="color: #005596; text-decoration: none; font-weight: bold;">
-                        {{ job.related.stdout }}
-                    </a>
+                <td>{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
                 </td>
             </tr>
             {% endfor %}
