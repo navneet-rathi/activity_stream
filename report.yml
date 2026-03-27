@@ -2,7 +2,7 @@
 - name: Generate Last 1 Month Job Report
   hosts: aux_server
   become: true
-  gather_facts: no
+  gather_facts: true
   vars:
     controller_url: "https://192.168.64.63"
     tower_username: "admin"
