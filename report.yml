@@ -1,7 +1,8 @@
 ---
 - name: Generate Last 1 Month Job Report
-  hosts: localhost
-  gather_facts: yes
+  hosts: aux_server
+  become: true
+  gather_facts: no
   vars:
     controller_url: "https://192.168.64.63"
     controller_token: "your_api_token"
@@ -26,3 +27,9 @@
         jobs: "{{ job_api_response.json.results }}"
         report_title: "Monthly Automation Summary"
         report_range: "Last 30 Days (Since {{ last_month }})"
+
+    - name: copy report to aux_server
+      ansible.builtin.copy:
+        src: "./job_report_{{ ansible_date_time.date }}.html"
+        dest: "/usr/share/nginx/html"
+  #    delegate_to: aux_server  
