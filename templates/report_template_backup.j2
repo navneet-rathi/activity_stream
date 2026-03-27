@@ -45,20 +45,7 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
-                <td><strong> 
-                 <div style="font-family: monospace; white-space: pre-wrap; font-size: 0.9em; max-height: 200px; overflow-y: auto; background: #222; color: #eee; padding: 10px; border-radius: 4px;">
-    {% set raw_logs = lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=html', validate_certs='false', username='admin', password='yourpassword', force_basic_auth='True') %}
-    
-    {# Chain replacements for color coding #}
-    {{ raw_logs | 
-       replace('ok', '<span style="color: #28a745; font-weight: bold;">ok</span>') | 
-       replace('changed', '<span style="color: #ffc107; font-weight: bold;">changed</span>') | 
-       replace('failed', '<span style="color: #dc3545; font-weight: bold;">failed</span>') | 
-       replace('fatal', '<span style="color: #dc3545; font-weight: bold;">fatal</span>') | 
-       replace('skipping', '<span style="color: #6c757d;">skipping</span>') | 
-       replace('\n', '<br>') | safe }}
-  </div>
-  </strong></td>
+                <td><strong>{{ lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=html', validate_certs='false', username='admin', password='primod123', force_basic_auth='True')|replace(',', '<br>') | safe }}</strong></td>
                 
             </tr>{% endfor %}
         </tbody>
