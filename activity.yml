@@ -5,7 +5,7 @@
   vars:
     tower_host: "https://aap.example.org"
     tower_username: "admin"
-    tower_password: "admin123"
+    tower_password: "primod123"
     output_file: "activity_stream.json"
 
   tasks:
