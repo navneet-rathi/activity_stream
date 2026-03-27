@@ -26,14 +26,14 @@
     - name: Generate HTML Report
       template:
         src: report_template.j2
-        dest: "./job_report_{{ ansible_date_time.date }}.html"
+        dest: "/usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html""
       vars:
         jobs: "{{ job_api_response.json.results }}"
         report_title: "Monthly Automation Summary"
         report_range: "Last 30 Days (Since {{ last_month }})"
 
-    - name: copy report to aux_server
-      ansible.builtin.copy:
-        src: "./job_report_{{ ansible_date_time.date }}.html"
-        dest: "/usr/share/nginx/html"
-  #    delegate_to: aux_server  
+  #   - name: copy report to aux_server
+  #     ansible.builtin.copy:
+  #       src: "./job_report_{{ ansible_date_time.date }}.html"
+  #       dest: "/usr/share/nginx/html"
+  # #    delegate_to: aux_server  
