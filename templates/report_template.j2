@@ -47,7 +47,7 @@
                 <td>{{ job.finished }}</td>
                 <td><strong> 
                  <div style="font-family: monospace; white-space: pre-wrap; font-size: 0.9em; max-height: 200px; overflow-y: auto; background: #222; color: #eee; padding: 10px; border-radius: 4px;">
-    {% set raw_logs = lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=html', validate_certs='false', username='admin', password='yourpassword', force_basic_auth='True') %}
+    {% set raw_logs = lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=txt', validate_certs='false', username='admin', password='yourpassword', force_basic_auth='True') %}
     
     {# Chain replacements for color coding #}
     {{ raw_logs | 
