@@ -40,7 +40,11 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
-                <td>{{ job.related.stdout }}</td>
+                <td>
+                    <a href="https://{{ controller_url }}/{{ job.related.stdout }}" target="_blank" style="color: #005596; text-decoration: none; font-weight: bold;">
+                        {{ job.related.stdout }}
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
