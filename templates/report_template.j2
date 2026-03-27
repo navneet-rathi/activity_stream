@@ -41,37 +41,7 @@
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
                 <td>
-                    <div id="terminal-output"></div>
-
-    <script>
-        // 2. Inject the dynamic playbook output using Jinja syntax
-        // The | safe filter is used to prevent escaping of special characters
-        const rawData = "{{lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=html', validate_certs='false', username='admin', password='primod123', force_basic_auth='True')| to_nice_yaml(indent=4) | safe }}";
-
-        function parseLogs(input) {
-            const container = document.getElementById('terminal-output');
-            // Split by comma to treat each as a new line
-            const lines = input.split(',');
-            
-            lines.forEach(line => {
-                const cleanLine = line.trim();
-                if (!cleanLine) return;
-
-                const p = document.createElement('div');
-                
-                // Dynamic styling logic
-                if (cleanLine.includes('PLAY [')) p.className = 'header';
-                else if (cleanLine.includes('TASK [')) p.className = 'task';
-                else if (cleanLine.includes('ok:')) p.className = 'status-ok';
-                else if (cleanLine.includes('changed:')) p.className = 'status-changed';
-                
-                p.innerText = cleanLine;
-                container.appendChild(p);
-            });
-        }
-
-        parseLogs(rawData);
-                
+                {{ lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout ~ '?format=html', validate_certs='false', username='admin', password='primod123', force_basic_auth='True')|replace(',', '<br>') | safe )}}
                 </td>
             </tr>
             {% endfor %}
