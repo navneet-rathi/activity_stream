@@ -41,7 +41,7 @@
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
                 <td>
-                    <a href="https://{{ controller_url }}/{{ job.related.stdout }}" target="_blank" style="color: #005596; text-decoration: none; font-weight: bold;">
+                    <a href="{{ controller_url }}/{{ job.related.stdout }}" target="_blank" style="color: #005596; text-decoration: none; font-weight: bold;">
                         {{ job.related.stdout }}
                     </a>
                 </td>
