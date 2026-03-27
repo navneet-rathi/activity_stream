@@ -40,7 +40,7 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
-                <td>{{ lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout, validate_certs='false', user='admin', password='primod123', force_basic_auth='True')}}
+                <td>{{ lookup('ansible.builtin.url', 'https://192.168.64.63' ~ job.related.stdout, validate_certs='false', username='admin', password='primod123', force_basic_auth='True')}}
                 </td>
             </tr>
             {% endfor %}
