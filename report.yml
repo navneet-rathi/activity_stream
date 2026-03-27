@@ -5,7 +5,8 @@
   gather_facts: no
   vars:
     controller_url: "https://192.168.64.63"
-    controller_token: "your_api_token"
+    tower_username: "admin"
+    tower_password: "primod123"
     # Calculate date 30 days ago in ISO format (YYYY-MM-DD)
     last_month: "{{ lookup('pipe', 'date -d \"30 days ago\" +%Y-%m-%d') }}"
 
@@ -14,10 +15,12 @@
       uri:
         url: "{{ controller_url }}/api/controller/v2/jobs/?finished__gte={{ last_month }}&order_by=-finished"
         method: GET
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+        force_basic_auth: yes
         validate_certs: false
-        headers:
-          Authorization: "Bearer {{ controller_token }}"
-        status_code: 200
+        return_content: yes
+      #  status_code: 200
       register: job_api_response
 
     - name: Generate HTML Report
