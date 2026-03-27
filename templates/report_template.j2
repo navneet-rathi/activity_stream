@@ -30,6 +30,7 @@
                 <th>Template Name</th>
                 <th>Status</th>
                 <th>Finished At</th>
+                <th>Logs</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
+                <td>{{ job.logs }}</td>
             </tr>
             {% endfor %}
         </tbody>
