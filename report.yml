@@ -13,7 +13,7 @@
   tasks:
     - name: Fetch jobs from the last 30 days
       uri:
-        url: "{{ controller_url }}/api/controller/v2/jobs/?finished__gte={{ last_month }}&order_by=-finished"
+        url: "{{ controller_url }}/api/controller/v2/jobs/?finished__gte={{ last_month }}&order_by=-finished&page_size=1000"
         method: GET
         user: "{{ tower_username }}"
         password: "{{ tower_password }}"

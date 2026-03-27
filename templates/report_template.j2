@@ -40,7 +40,7 @@
                 <td>{{ job.name }}</td>
                 <td class="status-{{ job.status }}">{{ job.status | capitalize }}</td>
                 <td>{{ job.finished }}</td>
-                <td>{{ job.stdout }}</td>
+                <td>{{ job.related.stdout }}</td>
             </tr>
             {% endfor %}
         </tbody>
