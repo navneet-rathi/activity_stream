@@ -34,8 +34,8 @@
         stdout: "{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
  
     - name: Convert the HTML file to PDF
-      ansible.builtin.command:
-        ansible.builtin.shell: "/usr/local/bin/wkhtmltopdf /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.pdf"
+#    ansible.builtin.command:
+      ansible.builtin.shell: "/usr/local/bin/wkhtmltopdf /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.pdf"
         #creates: "/tmp/output.pdf" # This prevents the task from running if the output file already exists
 
  
