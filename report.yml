@@ -26,7 +26,7 @@
     - name: Generate HTML Report
       template:
         src: report_template.j2
-        dest: "/usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html""
+        dest: "/usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html"
       vars:
         jobs: "{{ job_api_response.json.results }}"
         report_title: "Monthly Automation Summary"
