@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: true
   vars:
-    tower_host: "https://awx.example.com"
+    tower_host: "https://aap.example.org"
     tower_username: "admin"
     tower_password: "admin123"
     output_file: "activity_stream.json"
@@ -12,7 +12,7 @@
     - name: Ensure host entry is present
       ansible.builtin.lineinfile:
         path: /etc/hosts
-        line: "192.168.1.10    awx.example.com"
+        line: "192.168.64.63  aap.example.org"
         state: present
         unsafe_writes: true
         create: yes
