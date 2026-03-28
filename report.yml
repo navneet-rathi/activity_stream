@@ -8,7 +8,7 @@
     tower_username: "admin"
     tower_password: "primod123"
     # Calculate date 30 days ago in ISO format (YYYY-MM-DD)
-    last_month: "{{ lookup('pipe', 'date -d \"30 days ago\" +%Y-%m-%d') }}"
+    last_month: "{{ lookup('pipe', 'date -d \"1 days ago\" +%Y-%m-%d') }}"
 
   tasks:
     - name: Fetch jobs from the last 30 days
