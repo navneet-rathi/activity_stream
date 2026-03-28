@@ -23,6 +23,12 @@
       #  status_code: 200
       register: job_api_response
 
+    - name: adding a debug
+      debug:
+        msg: "Total Jobs Executed:</strong> {{ jobs | length }}"
+      vars:
+        jobs: "{{ job_api_response.json.results }}"  
+
     - name: Generate HTML Report
       template:
         src: report_template.j2
@@ -31,7 +37,7 @@
         jobs: "{{ job_api_response.json.results }}"
         report_title: "Monthly Automation Summary"
         report_range: "Last 30 Days (Since {{ last_month }})"
-        stdout: "{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
+        #stdout: "{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
  
     - name: Convert the HTML file to PDF
 #    ansible.builtin.command:
