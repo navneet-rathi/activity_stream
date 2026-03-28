@@ -25,7 +25,7 @@
 
     - name: adding a debug
       debug:
-        msg: "Total Jobs Executed:</strong> {{ jobs | length }}"
+        msg: "{{job_api_response}}"
       vars:
         jobs: "{{ job_api_response.json.results }}"  
 
