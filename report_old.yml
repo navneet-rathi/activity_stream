@@ -1,0 +1,47 @@
+---
+- name: Generate Last 1 Month Job Report
+  hosts: aux_server
+  become: true
+  gather_facts: true
+  vars:
+    controller_url: "https://192.168.64.63"
+    tower_username: "admin"
+    tower_password: "primod123"
+    # Calculate date 30 days ago in ISO format (YYYY-MM-DD)
+    last_month: "{{ lookup('pipe', 'date -d \"1 days ago\" +%Y-%m-%d') }}"
+
+  tasks:
+    - name: Fetch jobs from the last 30 days
+      uri:
+        url: "{{ controller_url }}/api/controller/v2/jobs/?finished__gte={{ last_month }}&order_by=-finished&page_size=1000"
+        method: GET
+        user: "{{ tower_username }}"
+        password: "{{ tower_password }}"
+        force_basic_auth: yes
+        validate_certs: false
+        return_content: yes
+      #  status_code: 200
+      register: job_api_response
+
+    - name: adding a debug
+      debug:
+        msg: "{{job_api_response}}"
+      vars:
+        jobs: "{{ job_api_response.json.results }}"  
+
+    - name: Generate HTML Report
+      template:
+        src: report_template.j2
+        dest: "/usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html"
+      vars:
+        jobs: "{{ job_api_response.json.results }}"
+        report_title: "Monthly Automation Summary"
+        report_range: "Last 30 Days (Since {{ last_month }})"
+        #stdout: "{{ lookup('ansible.builtin.url', '{{ controller_url }}{{ job.related.stdout }}' ,validate_certs: false, user: {{ tower_username }}, password: {{ tower_password }}, force_basic_auth='True' ) }}"
+ 
+    - name: Convert the HTML file to PDF
+#    ansible.builtin.command:
+      ansible.builtin.shell: "/usr/local/bin/wkhtmltopdf /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.html /usr/share/nginx/html/job_report_{{ ansible_date_time.date }}.pdf"
+        #creates: "/tmp/output.pdf" # This prevents the task from running if the output file already exists
+
+ 
