@@ -11,7 +11,7 @@
     last_month: "{{ lookup('pipe', 'date -d \"30 days ago\" +%Y-%m-%d') }}"
     page_size: 200
 
-    tasks:
+  tasks:
     - name: Fetch first page of jobs
       ansible.builtin.uri:
         url: "{{ controller_url }}/api/controller/v2/jobs/?finished__gte={{ last_month }}&order_by=-finished&page_size={{ page_size }}"
